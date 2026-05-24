@@ -1,24 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Hotel Welcome Screen</title>
-    <meta name="description" content="Hotel Welcome Screen — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Hotel Welcome Screen" />
-    <meta property="og:description" content="Hotel Welcome Screen — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hotel Welcome Screen" />
-    <meta name="twitter:description" content="Hotel Welcome Screen — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghazix Homes - TV Welcome Screen</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #f5f5f7;
+            --accent-color: #d4af37; /* Gold */
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(212, 175, 55, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        /* خلفية سينمائية فاخرة مريحة لشاشات التلفزيون */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)), 
+                              url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .tv-container {
+            width: 100vw;
+            height: 100vh;
+            padding: 6vh 6vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            text-align: center;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .brand-ornament {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .hotel-name {
+            font-size: 3.2rem;
+            letter-spacing: 7px;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: var(--text-color);
+        }
+
+        .hotel-tagline {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .divider {
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+            margin: 15px auto;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4vw;
+            align-items: center;
+            margin: auto 0;
+        }
+
+        .welcome-message {
+            animation: fadeInLeft 1.5s ease-out;
+        }
+
+        .welcome-message h2 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .welcome-message h3 {
+            font-size: 3.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .welcome-message p {
+            font-size: 1.3rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            animation: fadeInRight 1.5s ease-out;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 20px 25px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card h4 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 2vh;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+
+    <div class="tv-container">
+        <header>
+            <div class="brand-ornament">✦</div>
+            <h1 class="hotel-name">Ghazix Homes</h1>
+            <div class="hotel-tagline">A Collection of Extraordinary Moments</div>
+            <div class="divider"></div>
+        </header>
+
+        <main>
+            <div class="welcome-message">
+                <h2>Welcome</h2>
+                <h3>Our Distinguished Guest</h3>
+                <p>Premium Apartment Experience</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>✦ High-Speed Wi-Fi</h4>
+                    <p>Network: Ghazix_Homes_Guest &nbsp;|&nbsp; Password: Welcome✨2026</p>
+                </div>
+                <div class="service-card">
+                    <h4>✦ Guest Support</h4>
+                    <p>Contact Host via your booking platform. Available 24 Hours.</p>
+                </div>
+                <div class="service-card">
+                    <h4>✦ Smart Experience</h4>
+                    <p>Climate controls & lighting can be adjusted via the in-room panels.</p>
+                </div>
+                <div class="service-card">
+                    <h4>✦ Check-Out Information</h4>
+                    <p>Standard check-out is at 11:00 AM on departure day.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div id="tv-date">Loading date...</div>
+            <div>We wish you a most pleasurable stay.</div>
+            <div id="tv-time">00:00</div>
+        </footer>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('tv-time').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            document.getElementById('tv-date').innerText = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
 </html>
