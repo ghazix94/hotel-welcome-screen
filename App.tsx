@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import "./hotel.css";
+import "../src/hotel.css";
 
 // ─── EDITABLE GUEST CONFIG ─────────────────────────────────────────────────
 const GUEST_NAME = "Our Distinguished Guest"; 
